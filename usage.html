@@ -26,7 +26,6 @@
 
     <div class="document">
       <div class="documentwrapper">
-        <div class="bodywrapper">
           
 
           <div class="body" role="main">
@@ -42,72 +41,80 @@
 </div>
 <div class="section" id="id1">
 <h2>Получение списка валют<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
-<p>Для получения списка валют необходимо создать класс, имплементирующий BaseCurrenciesRequester, а так же класс CurrenciesDict:
-.. code-block:: python</p>
-<blockquote>
-<div><p>requester = CBRCurrenciesRequester()
-c = CurrenciesDict(requester)</p>
-<p>c.request_currencies()
-cs = c.get_currencies()
-usd = c.get_currencies_by_id(‘R01235’)</p>
-<p>c.set_tracked_currencies(‘R01335’, ‘R01239’, ‘R01235’)
-tracked = c.get_tracked_currencies()</p>
-</div></blockquote>
+<p>Для получения списка валют необходимо создать класс, имплементирующий BaseCurrenciesRequester, а так же класс CurrenciesDict:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">requester</span> <span class="o">=</span> <span class="n">CBRCurrenciesRequester</span><span class="p">()</span>
+<span class="n">c</span> <span class="o">=</span> <span class="n">CurrenciesDict</span><span class="p">(</span><span class="n">requester</span><span class="p">)</span>
+
+<span class="n">c</span><span class="o">.</span><span class="n">request_currencies</span><span class="p">()</span>
+<span class="n">cs</span> <span class="o">=</span> <span class="n">c</span><span class="o">.</span><span class="n">get_currencies</span><span class="p">()</span>
+<span class="n">usd</span> <span class="o">=</span> <span class="n">c</span><span class="o">.</span><span class="n">get_currencies_by_id</span><span class="p">(</span><span class="s1">&#39;R01235&#39;</span><span class="p">)</span>
+
+<span class="n">c</span><span class="o">.</span><span class="n">set_tracked_currencies</span><span class="p">(</span><span class="s1">&#39;R01335&#39;</span><span class="p">,</span> <span class="s1">&#39;R01239&#39;</span><span class="p">,</span> <span class="s1">&#39;R01235&#39;</span><span class="p">)</span>
+<span class="n">tracked</span> <span class="o">=</span> <span class="n">c</span><span class="o">.</span><span class="n">get_tracked_currencies</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="basecurrenciesrequester">
+<h2>BaseCurrenciesRequester<a class="headerlink" href="#basecurrenciesrequester" title="Permalink to this headline">¶</a></h2>
+<p>Абстрактный класс запросчика валют.</p>
+<span class="target" id="module-currencies.base_currencies_requester"></span><dl class="py class">
+<dt class="sig sig-object py" id="currencies.base_currencies_requester.BaseCurrenciesRequester">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">currencies.base_currencies_requester.</span></span><span class="sig-name descname"><span class="pre">BaseCurrenciesRequester</span></span><a class="headerlink" href="#currencies.base_currencies_requester.BaseCurrenciesRequester" title="Permalink to this definition">¶</a></dt>
+<dd><p>Абстрактный базовый класс для запроса валют.</p>
+<dl class="simple">
+<dt>Методы:</dt><dd><p>request_currencies(): Запрос и получение валют.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="cbrcurrenciesrequester">
+<h2>CBRCurrenciesRequester<a class="headerlink" href="#cbrcurrenciesrequester" title="Permalink to this headline">¶</a></h2>
+<p>Запросчик валют с сайта Центробанка.</p>
+<span class="target" id="module-currencies.cbr_currencies_requester"></span><dl class="py class">
+<dt class="sig sig-object py" id="currencies.cbr_currencies_requester.CBRCurrenciesRequester">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">currencies.cbr_currencies_requester.</span></span><span class="sig-name descname"><span class="pre">CBRCurrenciesRequester</span></span><a class="headerlink" href="#currencies.cbr_currencies_requester.CBRCurrenciesRequester" title="Permalink to this definition">¶</a></dt>
+<dd><p>Класс для запроса валют у Центрального банка Российской Федерации (ЦБР).</p>
+<dl class="simple">
+<dt>Атрибуты:</dt><dd><p>url (str): URL для запроса валют у ЦБР.
+last_request (datetime): Временная метка последнего запроса валют.
+valutes (list): Список значений валют.</p>
+</dd>
+<dt>Методы:</dt><dd><p>request_currencies(): Запрос и получение валют от ЦБР.
+_update_valutes_from_request(root): Обновление списка valutes на основе XML-ответа.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="currencies.cbr_currencies_requester.CBRCurrenciesRequester.request_currencies">
+<span class="sig-prename descclassname"><span class="pre">CBRCurrenciesRequester.</span></span><span class="sig-name descname"><span class="pre">request_currencies</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">currencies.valute.Valute</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#currencies.cbr_currencies_requester.CBRCurrenciesRequester.request_currencies" title="Permalink to this definition">¶</a></dt>
+<dd><p>Запрос и получение валют от ЦБР.
+Выполнят один запрос и сохраняет результат до следующего дня,
+так как курс валют обновляется один раз в день.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Список значений валют.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>List[Valute]:</p>
+</dd>
+<dt class="field-odd">Raises</dt>
+<dd class="field-odd"><p>Выкидывает исключение в случае неудачного запроса к API.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="currenciesdict">
+<h2>CurrenciesDict<a class="headerlink" href="#currenciesdict" title="Permalink to this headline">¶</a></h2>
+<p>Хранилище курсов валют.</p>
 </div>
 </div>
 
 
           </div>
           
-        </div>
-      </div>
-      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
-        <div class="sphinxsidebarwrapper">
-<h1 class="logo"><a href="index.html">Currencies</a></h1>
-
-
-
-
-
-
-
-
-<h3>Navigation</h3>
-<ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Usage</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#installation">Installation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id1">Получение списка валют</a></li>
-</ul>
-</li>
-</ul>
-
-<div class="relations">
-<h3>Related Topics</h3>
-<ul>
-  <li><a href="index.html">Documentation overview</a><ul>
-      <li>Previous: <a href="index.html" title="previous chapter">Welcome to Currencies’s documentation!</a></li>
-  </ul></li>
-</ul>
-</div>
-<div id="searchbox" style="display: none" role="search">
-  <h3 id="searchlabel">Quick search</h3>
-    <div class="searchformwrapper">
-    <form class="search" action="search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
-      <input type="submit" value="Go" />
-    </form>
-    </div>
-</div>
-<script>$('#searchbox').show(0);</script>
-
-
-
-
-
-
-
-
-        </div>
       </div>
       <div class="clearer"></div>
     </div>
