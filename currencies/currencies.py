@@ -90,7 +90,7 @@ class CurrenciesDict(CurrenciesBase):
         """
         return self._currencies
 
-    def get_currencies_by_id(self, *ids: str) -> Dict[str, Valute | None]:
+    def get_currencies_by_id(self, *ids: str) -> Dict[str, Valute]:
         """Возвращает словарь, содержащий валюты с указанными id.
         При несуществующем id возвращает словарь вида {'R9999': None}.
 
