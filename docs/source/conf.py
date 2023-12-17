@@ -28,7 +28,9 @@ language = 'en'
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output
 
 html_theme = 'alabaster'
+html_theme_options = {
+    "nosidebar": "true",
+}
 html_static_path = ['_static']
-
 
 sys.path.insert(0, os.path.abspath(os.path.join("..", "..")))

@@ -1,10 +1,7 @@
-from cbr_currencies_requester import CBRCurrenciesRequester
-from currencies import CurrenciesDecoratorCSV, CurrenciesDecoratorJson, CurrenciesDict
-import pydoc
+from currencies.currencies import CurrenciesDecoratorCSV, CurrenciesDecoratorJson, CurrenciesDict
+from currencies.cbr_currencies_requester import CBRCurrenciesRequester
 
 if __name__ == '__main__':
-    pydoc.writedoc(CurrenciesDecoratorCSV)
-
     requester = CBRCurrenciesRequester()
     c = CurrenciesDict(requester)
 
@@ -14,7 +11,7 @@ if __name__ == '__main__':
 
     c.set_tracked_currencies('R01335', 'R01239', 'R01235')
     tracked = c.get_tracked_currencies()
- 
+
     c_csv = CurrenciesDecoratorCSV(c)
     csv_data = c_csv.get_tracked_currencies()
 

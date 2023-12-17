@@ -12,10 +12,12 @@ Installation
 
 
 Получение списка валют
-----------------
+----------------------
 
 Для получения списка валют необходимо создать класс, имплементирующий BaseCurrenciesRequester, а так же класс CurrenciesDict:
+
 .. code-block:: python
+
     requester = CBRCurrenciesRequester()
     c = CurrenciesDict(requester)
 
@@ -26,18 +28,43 @@ Installation
     c.set_tracked_currencies('R01335', 'R01239', 'R01235')
     tracked = c.get_tracked_currencies()
 
+BaseCurrenciesRequester
+-----------------------
+
+Абстрактный класс запросчика валют.
+
+.. automodule:: currencies.base_currencies_requester
+
+.. autoclass:: BaseCurrenciesRequester
+
+CBRCurrenciesRequester
+----------------------
+
+Запросчик валют с сайта Центробанка.
+
+.. automodule:: currencies.cbr_currencies_requester
+
+.. autoclass:: CBRCurrenciesRequester
+
+.. automethod:: CBRCurrenciesRequester.request_currencies
+
+CurrenciesDict
+--------------
+
+Хранилище курсов валют.
+
 .. automodule:: currencies.currencies
 
-.. autoclass:: currencies.currencies.CurrenciesDict
+.. autoclass:: CurrenciesDict
 
-.. automethod:: currencies.currencies.CurrenciesDict.request_currencies
+.. automethod:: CurrenciesDict.request_currencies
 
-.. automethod:: currencies.currencies.CurrenciesDict.visualize
+.. automethod:: CurrenciesDict.get_currencies
 
-.. automethod:: currencies.currencies.CurrenciesDict.get_currencies
+.. automethod:: CurrenciesDict.get_currencies_by_id
 
-.. automethod:: currencies.currencies.CurrenciesDict.get_currencies_by_id
+.. automethod:: CurrenciesDict.set_tracked_currencies
 
-.. automethod:: currencies.currencies.CurrenciesDict.set_tracked_currencies
+.. automethod:: CurrenciesDict.get_tracked_currencies
 
-.. automethod:: currencies.currencies.CurrenciesDict.get_tracked_currencies
+.. automethod:: CurrenciesDict.visualize

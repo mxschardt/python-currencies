@@ -39,13 +39,6 @@ class CurrenciesBase:
 class CurrenciesDict(CurrenciesBase):
     """Класс CurrenciesDict представляет собой хранилище и обработчик валют.
 
-    Методы:
-        request_currencies(): Запрашивает список валют у requester, сохраняет и возвращает его.
-        get_currencies(): Возвращает словарь всех валют.
-        get_currencies_by_id(*ids): Возвращает словарь, содержащий валюты с указанными id.
-        set_tracked_currencies(*ids): Устанавливает список отслеживаемых валют по заданным id.
-        get_tracked_currencies(): Возвращает словарь с отслеживаемыми валютами.
-
 
     """
 

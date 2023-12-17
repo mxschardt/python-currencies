@@ -17,12 +17,13 @@ Indices and tables
 ==================
 
 * :ref:`genindex`
-* :ref:`modindex`
+.. * :ref:`modindex`
 * :ref:`search`
 
 Contents
 --------
 
 .. toctree::
+   :maxdepth: 0
 
    usage

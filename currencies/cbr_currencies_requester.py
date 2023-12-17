@@ -9,15 +9,15 @@ from .valute import Valute
 from .singleton import singleton
 
 
-@singleton
+# @singleton
 class CBRCurrenciesRequester(BaseCurrenciesRequester):
     """Класс для запроса валют у Центрального банка Российской Федерации (ЦБР).
-    
+
     Атрибуты:
         url (str): URL для запроса валют у ЦБР.
         last_request (datetime): Временная метка последнего запроса валют.
         valutes (list): Список значений валют.
-    
+
     Методы:
         request_currencies(): Запрос и получение валют от ЦБР.
         _update_valutes_from_request(root): Обновление списка valutes на основе XML-ответа.
@@ -34,11 +34,11 @@ class CBRCurrenciesRequester(BaseCurrenciesRequester):
         """Запрос и получение валют от ЦБР.
         Выполнят один запрос и сохраняет результат до следующего дня,
         так как курс валют обновляется один раз в день.
-        
-        Возвращает:
-            List[Valute]: Список значений валют.
-        
-        Исключения:
+
+        :return: Список значений валют.
+
+        :rtype: List[Valute]:
+        :raises: Выкидывает исключение в случае неудачного запроса к API.
 
 
         """
@@ -65,13 +65,6 @@ class CBRCurrenciesRequester(BaseCurrenciesRequester):
         return self.valutes
 
     def _update_valutes_from_request(self, root: ElementTree.Element):
-        """
-
-        :param root: ElementTree.Element:
-        :param root: ElementTree.Element:
-        :param root: ElementTree.Element: 
-
-        """
         self.valutes.clear()
         for v in root.findall("Valute"):
             # print(v)
