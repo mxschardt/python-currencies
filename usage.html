@@ -35,7 +35,7 @@
 <div class="section" id="installation">
 <h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
 <p>Для установки Currencies в своем проекте:</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp gp-VirtualEnv">(.venv)</span> <span class="gp">$</span> git clone ...
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp gp-VirtualEnv">(.venv)</span> <span class="gp">$</span> git clone https://github.com/mxschardt/python-currencies
 </pre></div>
 </div>
 </div>
@@ -109,6 +109,84 @@ _update_valutes_from_request(root): Обновление списка valutes н
 <div class="section" id="currenciesdict">
 <h2>CurrenciesDict<a class="headerlink" href="#currenciesdict" title="Permalink to this headline">¶</a></h2>
 <p>Хранилище курсов валют.</p>
+<span class="target" id="module-currencies.currencies"></span><dl class="py class">
+<dt class="sig sig-object py" id="currencies.currencies.CurrenciesDict">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">currencies.currencies.</span></span><span class="sig-name descname"><span class="pre">CurrenciesDict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">requester</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#currencies.base_currencies_requester.BaseCurrenciesRequester" title="currencies.base_currencies_requester.BaseCurrenciesRequester"><span class="pre">currencies.base_currencies_requester.BaseCurrenciesRequester</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#currencies.currencies.CurrenciesDict" title="Permalink to this definition">¶</a></dt>
+<dd><p>Класс CurrenciesDict представляет собой хранилище и обработчик валют.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="currencies.currencies.CurrenciesDict.request_currencies">
+<span class="sig-prename descclassname"><span class="pre">CurrenciesDict.</span></span><span class="sig-name descname"><span class="pre">request_currencies</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">currencies.valute.Valute</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#currencies.currencies.CurrenciesDict.request_currencies" title="Permalink to this definition">¶</a></dt>
+<dd><p>Запрашивает список валют у объекта requester и сохраняет его как словарь.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Словарь объектов <cite>Valute</cite></p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>dict[str, Valute]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="currencies.currencies.CurrenciesDict.get_currencies">
+<span class="sig-prename descclassname"><span class="pre">CurrenciesDict.</span></span><span class="sig-name descname"><span class="pre">get_currencies</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">currencies.valute.Valute</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#currencies.currencies.CurrenciesDict.get_currencies" title="Permalink to this definition">¶</a></dt>
+<dd><p>Возвращает:
+Cловарь со всеми валютами.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="currencies.currencies.CurrenciesDict.get_currencies_by_id">
+<span class="sig-prename descclassname"><span class="pre">CurrenciesDict.</span></span><span class="sig-name descname"><span class="pre">get_currencies_by_id</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">ids</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">currencies.valute.Valute</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#currencies.currencies.CurrenciesDict.get_currencies_by_id" title="Permalink to this definition">¶</a></dt>
+<dd><p>Возвращает словарь, содержащий валюты с указанными id.
+При несуществующем id возвращает словарь вида {‘R9999’: None}.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Словарь, где ключи - id валюты, значения - объекты Valute или None.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>Dict[str, Valute | None]</p>
+</dd>
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>*ids</strong> – <p>id валют.</p>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="currencies.currencies.CurrenciesDict.set_tracked_currencies">
+<span class="sig-prename descclassname"><span class="pre">CurrenciesDict.</span></span><span class="sig-name descname"><span class="pre">set_tracked_currencies</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">ids</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#currencies.currencies.CurrenciesDict.set_tracked_currencies" title="Permalink to this definition">¶</a></dt>
+<dd><p>Устанавливает список отслеживаемых валют по заданным id.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>*ids</strong> – <p>id валют.</p>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="currencies.currencies.CurrenciesDict.get_tracked_currencies">
+<span class="sig-prename descclassname"><span class="pre">CurrenciesDict.</span></span><span class="sig-name descname"><span class="pre">get_tracked_currencies</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">currencies.valute.Valute</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#currencies.currencies.CurrenciesDict.get_tracked_currencies" title="Permalink to this definition">¶</a></dt>
+<dd><p>Возвращает словарь с отслеживаемыми валютами.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Словарь с отслеживаемыми валютами.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>Dict[str, Valute | None]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="currencies.currencies.CurrenciesDict.visualize">
+<span class="sig-prename descclassname"><span class="pre">CurrenciesDict.</span></span><span class="sig-name descname"><span class="pre">visualize</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#currencies.currencies.CurrenciesDict.visualize" title="Permalink to this definition">¶</a></dt>
+<dd><p>Визуализирует отслеживымые валюты.</p>
+</dd></dl>
+
 </div>
 </div>
 

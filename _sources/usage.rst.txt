@@ -8,7 +8,7 @@ Installation
 
 .. code-block:: console
 
-   (.venv) $ git clone ...
+   (.venv) $ git clone https://github.com/mxschardt/python-currencies
 
 
 Получение списка валют
